@@ -1,0 +1,22 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/trackhub
+hooks:
+  BeforeInstall:
+    - location: deploy/codedeploy/remove_build.sh
+      timeout: 300
+      runas: ec2-user
+  AfterInstall:
+    - location: deploy/codedeploy/make_build.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: deploy/codedeploy/start_server.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStop:
+    - location: deploy/codedeploy/stop_server.sh
+      timeout: 300
+      runas: ec2-user

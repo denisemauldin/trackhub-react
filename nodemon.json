@@ -1,0 +1,7 @@
+{
+    "delay": 5000,
+    "ext": "css,js,json,jsx,scss",
+    "watch": [
+        "src/"
+    ]
+}
