@@ -109,7 +109,8 @@ module.exports = {
             store: path.resolve(__dirname, "src", "shared", "store"),
             routes: path.resolve(__dirname, "src", "shared", "routes"),
             scss: path.resolve(__dirname, "src", "shared", "scss"),
-            svg: path.resolve(__dirname, "src", "shared", "svg")
+            svg: path.resolve(__dirname, "src", "shared", "svg"),
+            libs: path.resolve(__dirname, "src", "shared", "libs")
         }
     }
 }

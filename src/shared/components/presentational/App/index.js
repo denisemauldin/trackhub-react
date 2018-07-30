@@ -7,45 +7,42 @@ import {
     Route, 
     Switch
 } from "react-router"
-import Footer from "presentational/Footer"
-import Header from "presentational/Header"
-import PropTypes from "prop-types"
+import AppMessages from "connected/AppMessages"
+import AppModals from "connected/AppModals"
+// import Footer from "presentational/Footer"
+import Header from "connected/Header"
 import React from "react"
-import routes from "routes"
+import getRoutes from "routes"
 
-class App extends React.Component {
+export default function App(props) {
+    return (
+        <div>
+            <AppModals />
 
-    constructor(props, context) {
-        super(props)
-    }
+            <AppMessages />
 
-    render() {
-        return (
-            <div>
-                <Header />
+            <Header />
 
-                <main>
-                    <Switch>
-                        {
-                            routes.map((routeConfig, i) => {
-                                const RouterElement = routeConfig.redirect
-                                    ? Redirect
-                                    : Route
-                                
-                                return <RouterElement key={`route-${i}`} {...routeConfig} />
-                            })
-                        }
-                    </Switch>
-                </main>
-                
-                <Footer />
-            </div>
-        )
-    }
+            <main>
+                <Switch>
+                    {
+                        getRoutes(props.userPermissions).map((routeConfig, i) => {
+                            const {
+                                redirect,
+                                ...passThroughProps
+                            } = routeConfig
+
+                            const RouterElement = redirect
+                                ? Redirect
+                                : Route
+
+                            return <RouterElement key={`route-${i}`} {...passThroughProps} />
+                        })
+                    }
+                </Switch>
+            </main>
+
+            {/* <Footer /> */}
+        </div>
+    )
 }
-
-App.contextTypes = {
-    store: PropTypes.object
-}
-
-export default App

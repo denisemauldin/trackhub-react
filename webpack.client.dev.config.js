@@ -1,12 +1,15 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
+const webpack = require("webpack")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
     context: path.resolve(__dirname, "./src"),
     mode: "development",
     devtool: "source-map",
     entry: {
-        app: "./client/index.js"
+        app: "./client/index.js",
+        login: "./client/login.js"
     },
     output: {
         chunkFilename: "[name].chunk.js",
@@ -90,8 +93,25 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[name].[id].chunk.css"
-        })
+        }),
+        new CopyWebpackPlugin([{ from: 'static'}])
     ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    },
     resolve: {
         extensions: [".js", ".json", ".jsx"],
         alias: {
@@ -102,7 +122,8 @@ module.exports = {
             store: path.resolve(__dirname, "src", "shared", "store"),
             routes: path.resolve(__dirname, "src", "shared", "routes"),
             scss: path.resolve(__dirname, "src", "shared", "scss"),
-            svg: path.resolve(__dirname, "src", "shared", "svg")
+            svg: path.resolve(__dirname, "src", "shared", "svg"),
+            libs: path.resolve(__dirname, "src", "shared", "libs")
         }
     }
 }

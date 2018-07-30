@@ -1,11 +1,24 @@
 import Home from "connected/Home"
 
-const routes = [
+const globalRoutes = [
     {
         path: "/",
-        exact: true,
         component: Home
     }
 ]
 
-export default routes
+export default function getRoutes(userPermissions = {}) {
+    let routes = []
+
+    /*
+    if (userPermissions.approve_talendesignorder) {
+        globalRoutes.unshift({
+            path: "/approve-talens",
+            exact: true,
+            component: ApproveTalens
+        })
+    }
+    */
+
+    return globalRoutes
+}

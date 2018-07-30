@@ -1,0 +1,14 @@
+.messages {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+.wrapper {
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 0;
+}

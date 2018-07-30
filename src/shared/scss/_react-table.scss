@@ -1,0 +1,55 @@
+:global {
+    @import '~react-table/react-table';
+}
+
+// override!
+:global {
+    .ReactTable {
+        margin-top: 15px;
+        border: none;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .ReactTable .rt-thead {
+        margin-bottom: 20px;
+        background-color: #c8c8c8;
+
+        &.-header {
+            box-shadow: none;
+        }
+
+        .rt-th {
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-right: 4px solid #fff;
+        }
+    }
+
+    .ReactTable .rt-tbody {
+        .rt-tr-group {
+            margin-top: 8px;
+            border-bottom: none;
+            background-color: #fafafa;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+        
+        .rt-td {
+            font-size: 1.2rem;
+            border-right: none;
+        }
+    }
+
+    .ReactTable .rt-td {
+        padding: 10px;
+    }
+}

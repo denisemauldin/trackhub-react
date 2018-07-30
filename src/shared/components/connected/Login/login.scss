@@ -1,0 +1,63 @@
+@import "~scss/normalize";
+@import "~scss/fonts";
+@import "~scss/elements";
+@import "~scss/global";
+
+h1 {
+    font-size: 4.6rem;
+    text-transform: uppercase;
+}
+
+label {
+    color: #7a7a7a;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+[type="text"],
+[type="password"] {
+    display: block;
+    box-sizing: border-box;
+    padding: 5px 20px;
+    width: 100%;
+    font-size: 2.5rem;
+    outline: none;
+    border: none;
+    background-color: #fff;
+}
+
+.entryRow {
+    margin-top: 40px;
+    
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.error {
+    padding: 5px 20px;
+    border: 1px solid #D51010;
+    background-color: lighten(#D51010, 50%)
+}
+
+.fieldContainer {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #878787;
+    background-color: #fff;
+}
+
+.footCopy {
+    a {
+        color: #fff;
+    }
+}
+
+.formContent {
+    flex-grow: 1;
+    background-color: #adadad
+}
+
+.labelContainer {
+    padding: 10px 20px 5px;
+    background-color: #fff;
+}
