@@ -1,0 +1,73 @@
+$app-modal-error: #D51010;
+$app-modal-info: #000000;
+$app-modal-success: #34d510;
+$app-modal-warning: #d56b10;
+$app-modal-action-background: #ffffff;
+
+.actions,
+.heading {
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.actions {
+    text-align: right;
+    background-color: $app-modal-action-background;
+
+    &.warning {
+        background-color: lighten($app-modal-warning, 50%);
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .cancel {
+        padding: 0 25px;
+    }
+}
+
+.container {
+    padding: 15px 25px;
+}
+
+.modal {
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-height: 100vh;
+    max-width: 500px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+}
+
+.content {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.heading {
+    color: #fff;
+    background-color: $app-modal-info;
+
+    &.warning {
+        background-color: $app-modal-warning;
+    }
+}
+
+.wrapper {
+    position: fixed;
+    z-index: 1250;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+}

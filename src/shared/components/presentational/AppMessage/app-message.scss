@@ -1,0 +1,75 @@
+$app-message-error: #D51010;
+$app-message-info: #1094D5;
+$app-message-success: #34d510;
+
+.message {
+    box-sizing: border-box;
+    position: relative;
+    margin-top: 15px;
+    padding: 15px;
+    width: 300px;
+    color: $app-message-info;
+    border-radius: 4px;
+    border: 1px solid $app-message-info;
+    background-color: lighten($app-message-info, 50%);
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &.error {
+        color: $app-message-error;
+        border: 1px solid $app-message-error;
+        background-color: lighten($app-message-error, 50%);
+    }
+
+    &.success {
+        color: $app-message-success;
+        border: 1px solid $app-message-success;
+        background-color: lighten($app-message-success, 50%);
+    }
+}
+
+.close {
+    position: relative;
+    float: right;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background-color: transparent;
+
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        top: calc(50% - 1px);
+        left: 0;
+        width: 100%;
+        height: 2px;
+        transform-origin: 50% 50%;
+        background-color: $app-message-info;
+    }
+
+    &::after {
+        transform: rotate(45deg);
+    }
+
+    &::before {
+        transform: rotate(-45deg);
+    }
+
+    &.error::after,
+    &.error::before {
+        background-color: $app-message-error;
+    }
+
+    &.success::after,
+    &.success::before {
+        background-color: $app-message-success;
+    }
+}
+
+.copy {
+    float: left;
+    width: calc(100% - 25px);
+}
