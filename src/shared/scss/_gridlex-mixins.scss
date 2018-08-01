@@ -2,9 +2,9 @@
 @mixin bp($breakpoint) {
   $query: map-get($gl-mq-list, $breakpoint);
   @if $query != null {
-    @media ($gl-mq-width: #{nth($query, 1)}) {
-      @content;
-    }
+  @media ($gl-mq-width: #{nth($query, 1)}) {
+    @content;
+  }
   }
 }
 
@@ -12,14 +12,14 @@
 @mixin makeGridByNumber($grid)
 {
   @for $i from 1 through $gl-colCount {
-      [#{$gl-attributeName}*="#{$grid}-#{$i}"] > [#{$gl-attributeName}~="#{$gl-colName}"],
-      [#{$gl-attributeName}*="#{$grid}-#{$i}"] > [#{$gl-attributeName}*="#{$gl-colName}-"],
-      [#{$gl-attributeName}*="#{$grid}-#{$i}"] > [#{$gl-attributeName}*="#{$gl-colName}_"] {
-        $fraction: 1 / $i;
+    [#{$gl-attributeName}*="#{$grid}-#{$i}"] > [#{$gl-attributeName}~="#{$gl-colName}"],
+    [#{$gl-attributeName}*="#{$grid}-#{$i}"] > [#{$gl-attributeName}*="#{$gl-colName}-"],
+    [#{$gl-attributeName}*="#{$grid}-#{$i}"] > [#{$gl-attributeName}*="#{$gl-colName}_"] {
+    $fraction: 1 / $i;
 
-        flex-basis: map-get($gl-colFractions, $fraction);
-        max-width: map-get($gl-colFractions, $fraction);
-      }
+    flex-basis: map-get($gl-colFractions, $fraction);
+    max-width: map-get($gl-colFractions, $fraction);
+    }
   }
 }
 
@@ -29,10 +29,10 @@
   [#{$gl-attributeName}~="#{$gl-gridName}"],
   [#{$gl-attributeName}*="#{$gl-gridName}-"],
   [#{$gl-attributeName}*="#{$gl-gridName}_"] {
-    
-    @for $i from 1 through $gl-colCount {
-      > [#{$gl-attributeName}*="#{$col}-#{$i}"]{ flex-basis: map-get($gl-colPortions, $i); max-width: map-get($gl-colPortions, $i); }
-    }
+  
+  @for $i from 1 through $gl-colCount {
+    > [#{$gl-attributeName}*="#{$col}-#{$i}"]{ flex-basis: map-get($gl-colPortions, $i); max-width: map-get($gl-colPortions, $i); }
+  }
   }
 }
 
@@ -42,12 +42,12 @@
   [#{$gl-attributeName}~="#{$gl-gridName}"],
   [#{$gl-attributeName}*="#{$gl-gridName}-"],
   [#{$gl-attributeName}*="#{$gl-gridName}_"] {
-    [#{$gl-attributeName}*="#{$mq}-first"]{
-      order: -1;
-    }
-    [#{$gl-attributeName}*="#{$mq}-last"]{
-      order: 1;
-    }
+  [#{$gl-attributeName}*="#{$mq}-first"]{
+    order: -1;
+  }
+  [#{$gl-attributeName}*="#{$mq}-last"]{
+    order: 1;
+  }
   }
 }
 
@@ -57,16 +57,16 @@
   [#{$gl-attributeName}~="#{$gl-gridName}"],
   [#{$gl-attributeName}*="#{$gl-gridName}-"],
   [#{$gl-attributeName}*="#{$gl-gridName}_"] {
-    @for $i from 0 through $gl-colCount - 1 {
-      > [data-push-left*="#{$off}-#{$i}"]{ margin-left: map-get($gl-colPortions, $i); }
-    }
+  @for $i from 0 through $gl-colCount - 1 {
+    > [data-push-left*="#{$off}-#{$i}"]{ margin-left: map-get($gl-colPortions, $i); }
+  }
   }
 
   [#{$gl-attributeName}~="#{$gl-gridName}"],
   [#{$gl-attributeName}*="#{$gl-gridName}-"],
   [#{$gl-attributeName}*="#{$gl-gridName}_"] {
-    @for $i from 0 through $gl-colCount - 1 {
-      > [data-push-right*="#{$off}-#{$i}"]{ margin-right: map-get($gl-colPortions, $i); }
-    }
+  @for $i from 0 through $gl-colCount - 1 {
+    > [data-push-right*="#{$off}-#{$i}"]{ margin-right: map-get($gl-colPortions, $i); }
+  }
   }
 }

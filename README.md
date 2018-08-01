@@ -7,13 +7,14 @@ https://github.com/daler/trackhub
 
 Ryan Dale's trackhub demo at:
 https://github.com/daler/trackhub-demo
+src/static/trackhub-demo-master is a download of these example files
 
 Small hg38 demo file:
 https://raw.githubusercontent.com/daler/trackhub-demo/master/example_hub/myhub.hub.txt
 
 
 This is a server-side rendering application that is built with the following stack:
-* webpack 
+* webpack
 * react
 * react-router
 * redux
@@ -45,14 +46,14 @@ To eliminate the `../../../../../` module reference hell, there are a series of 
 
 ```
 {
-    connected: "./src/shared/components/connected",
-    constants: "./src/shared/constants",
-    contexts: "./src/shared/contexts",
-    presentational: "./src/shared/components/presentational",
-    store: "./src/shared/store",
-    routes: "./src/shared/routes",
-    scss: "./src/shared/scss",
-    svg: "./src/shared/svg"
+  connected: "./src/shared/components/connected",
+  constants: "./src/shared/constants",
+  contexts: "./src/shared/contexts",
+  presentational: "./src/shared/components/presentational",
+  store: "./src/shared/store",
+  routes: "./src/shared/routes",
+  scss: "./src/shared/scss",
+  svg: "./src/shared/svg"
 }
 ```
 
@@ -70,15 +71,15 @@ React components can/should be broken into two types: connected (smart) and pres
 
 ## Routes
 
-All the routes are defined in the `./src/shared/routes`. 
+All the routes are defined in the `./src/shared/routes`.
 
 This module is used by both client and server for getting the React components to render, as well as any data loading that needs to happen. The minimum you shape each route object can take is this:
 ```
 import AwesomeComponent from "connected/AwesomeComponent"
 
 {
-    path: "/awesome",
-    component: AwesomeComponent
+  path: "/awesome",
+  component: AwesomeComponent
 }
 ```
 

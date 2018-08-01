@@ -8,9 +8,9 @@ import history from "./history"
 import initStore from "store"
 
 hydrate((
-    <Provider store={initStore(history)}>
-        <ConnectedRouter history={history}>
-            <App history={history} />
-        </ConnectedRouter>
-    </Provider>
+  <Provider store={initStore(history)}>
+    <ConnectedRouter history={history}>
+      <App history={history} />
+    </ConnectedRouter>
+  </Provider>
 ), document.getElementById("root"))
