@@ -47,6 +47,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cookie-session": "^2.0.0-beta.3",
+    "cookies": "^0.7.1",
     "css-loader": "^0.28.11",
     "csvtojson": "^2.0.3",
     "dotenv": "^6.0.0",
@@ -63,6 +64,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-context-component": "0.0.6",
+    "react-csv-reader": "^0.3.2",
     "react-dom": "^16.3.2",
     "react-file-reader": "^1.1.4",
     "react-helmet": "^5.2.0",

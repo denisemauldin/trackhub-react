@@ -3,6 +3,7 @@ import axios from "axios"
 import hocPageLoader from "connected/hocPageLoader"
 import React from "react"
 import styles from "./home.scss"
+import TrackhubGenerator from "connected/TrackhubGenerator/TrackhubGenerator"
 
 class Home extends React.Component {
 
@@ -18,7 +19,7 @@ class Home extends React.Component {
   //       slug: pageSlug
   //     }
   //   } = props
-    
+
   //   return pageSlug === "homepage"
   // }
 
@@ -31,6 +32,7 @@ class Home extends React.Component {
       <div className={styles.homepage}>
         <h1>Custom Trackhub Generator</h1>
         <p>Generate custom trackhubs</p>
+        <TrackhubGenerator />
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './TrackhubGenerator.scss'
-import ReactFileReader from 'react-file-reader';
+import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 
 class TrackhubGenerator extends Component {
   constructor(props) {
@@ -51,10 +51,14 @@ class TrackhubGenerator extends Component {
     })
   }
 
+  displayCSV = (data) => {
+    console.log(data);
+  }
 
   render() {
     return(
       <React.Fragment>
+        <UploadCSV onFileUpload={this.displayCSV} />
       <form onSubmit={this.handleSubmit} className={classes.form}>
         <label>
           hub name:
