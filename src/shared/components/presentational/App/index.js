@@ -3,9 +3,9 @@
 import styles from "./app.scss"
 // ------
 import {
-  Redirect,
-  Route,
-  Switch
+ Redirect,
+ Route,
+ Switch
 } from "react-router"
 import AppMessages from "connected/AppMessages"
 import AppModals from "connected/AppModals"
@@ -15,34 +15,34 @@ import React from "react"
 import getRoutes from "routes"
 
 export default function App(props) {
-    return (
-        <div>
-            <AppModals />
+  return (
+    <div>
+      <AppModals />
 
-            <AppMessages />
+      <AppMessages />
 
-            <Header />
+      <Header />
 
-            <main>
-                <Switch>
-                    {
-                        getRoutes(props.userPermissions).map((routeConfig, i) => {
-                            const {
-                                redirect,
-                                ...passThroughProps
-                            } = routeConfig
+      <main>
+        <Switch>
+          {
+            getRoutes(props.userPermissions).map((routeConfig, i) => {
+              const {
+                redirect,
+                ...passThroughProps
+              } = routeConfig
 
-                            const RouterElement = redirect
-                                ? Redirect
-                                : Route
+              const RouterElement = redirect
+                ? Redirect
+                : Route
 
-                            return <RouterElement key={`route-${i}`} {...passThroughProps} />
-                        })
-                    }
-                </Switch>
-            </main>
+              return <RouterElement key={`route-${i}`} {...passThroughProps} />
+            })
+          }
+        </Switch>
+      </main>
 
-            {/* <Footer /> */}
-        </div>
-    )
+      {/* <Footer /> */}
+    </div>
+  )
 }

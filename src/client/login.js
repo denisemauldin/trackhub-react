@@ -7,10 +7,10 @@ import Login from "connected/Login"
 import React from "react"
 
 hydrate(
-    <Provider store={initStore(history)}>
-        <ConnectedRouter history={history}>
-            <Login />
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById("root")
+  <Provider store={initStore(history)}>
+    <ConnectedRouter history={history}>
+      <Login />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById("root")
 )

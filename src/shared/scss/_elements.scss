@@ -1,49 +1,49 @@
 
 h1, h2, h3, h4, h5, h6,
 p {
-    margin: 0;
-    padding: 0;
-    line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 a {
-    color: #EAAC70;
-    text-decoration: none;
+  color: #EAAC70;
+  text-decoration: none;
 
-    &:hover {
-        text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Graphik", "Helvetica", sans-serif;
-    font-weight: 400;
-    font-size: 1.4rem;
+  margin: 0;
+  padding: 0;
+  font-family: "Graphik", "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 input {
-    outline: none;
+  outline: none;
 
-    &:focus {
-        border-color: #000;
-    }
+  &:focus {
+    border-color: #000;
+  }
 }
 
 [disabled] {
-    cursor: default;
-    opacity: 0.3;
+  cursor: default;
+  opacity: 0.3;
 }
 
 [placeholder]::placeholder {
-    color: #BEC0C2;
+  color: #BEC0C2;
 }

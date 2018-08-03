@@ -6,68 +6,68 @@ $app-modal-action-background: #ffffff;
 
 .actions,
 .heading {
-    flex-grow: 0;
-    flex-shrink: 0;
-    text-transform: uppercase;
-    text-align: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .actions {
-    text-align: right;
-    background-color: $app-modal-action-background;
+  text-align: right;
+  background-color: $app-modal-action-background;
 
-    &.warning {
-        background-color: lighten($app-modal-warning, 50%);
-    }
+  &.warning {
+    background-color: lighten($app-modal-warning, 50%);
+  }
 
-    .container {
-        display: flex;
-        justify-content: center;
-    }
+  .container {
+    display: flex;
+    justify-content: center;
+  }
 
-    .cancel {
-        padding: 0 25px;
-    }
+  .cancel {
+    padding: 0 25px;
+  }
 }
 
 .container {
-    padding: 15px 25px;
+  padding: 15px 25px;
 }
 
 .modal {
-    box-sizing: border-box;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    max-height: 100vh;
-    max-width: 500px;
-    background-color: #fff;
-    transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-height: 100vh;
+  max-width: 500px;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
 }
 
 .content {
-    flex-grow: 1;
-    text-align: center;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .heading {
-    color: #fff;
-    background-color: $app-modal-info;
+  color: #fff;
+  background-color: $app-modal-info;
 
-    &.warning {
-        background-color: $app-modal-warning;
-    }
+  &.warning {
+    background-color: $app-modal-warning;
+  }
 }
 
 .wrapper {
-    position: fixed;
-    z-index: 1250;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  z-index: 1250;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
 }

@@ -13,18 +13,18 @@ const server = express()
 
 const apiBase = process.env.API_BASE
 if (!apiBase) {
-    console.error("Cannot authenticate without an API_BASE in the .env file")
+  console.error("Cannot authenticate without an API_BASE in the .env file")
 }
 let options = {}
 let host = process.env.HOST || 'localhost'
 let serverPort = 3000
 
 if (process.env.NODE_ENV === "production") {
-    serverPort = 443
-    options = {
-        key: readFileSync(process.env.SSL_KEY),
-        cert: readFileSync(process.env.SSL_CERT),
-    };
+  serverPort = 443
+  options = {
+    key: readFileSync(process.env.SSL_KEY),
+    cert: readFileSync(process.env.SSL_CERT),
+  };
 }
 
 // apply server setting variables
@@ -35,13 +35,13 @@ server.use(helmet())
 
 // add cookie session
 server.use(cookieSession({
-    name: "trackhub",
-    keys: ["trackhub", "genome", "browser"],
-    cookie: {
-        secure: true,
-        httpOnly: true,
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days; 24hrs/day, 60min/hour, 60sec/min, 1000ms/sec
-    }
+  name: "trackhub",
+  keys: ["trackhub", "genome", "browser"],
+  cookie: {
+    secure: true,
+    httpOnly: true,
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days; 24hrs/day, 60min/hour, 60sec/min, 1000ms/sec
+  }
 }))
 
 // path for static resources
@@ -52,49 +52,49 @@ server.use(bodyParser.json())
 
 // make sure there is some authentication
 const sendUserToLogin = function (req, res, next) {
-    import(/* webpackChunkName: "login" */ "./handlers/login")
-        .then(module => module.default(req, res, next))
+  import(/* webpackChunkName: "login" */ "./handlers/login")
+    .then(module => module.default(req, res, next))
 }
 
 const sendUserToApp = function (req, res, next) {
-    import(/* webpackChunkName: "app" */ "./handlers/app")
-        .then(module => module.default(req, res, next))
+  import(/* webpackChunkName: "app" */ "./handlers/app")
+    .then(module => module.default(req, res, next))
 }
 
 // enable router for data calls
 server.use("/data", function(req, res, next) {
-    return dataRouter(req, res, next);
+  return dataRouter(req, res, next);
 })
 
 // specific route for logout
 server.get("/logout", (req, res, next) => {
-    req.session = null
-    res.redirect("/login")
+  req.session = null
+  res.redirect("/login")
 })
 
 // catch all for routes
 server.use("*", authCheck(sendUserToLogin, sendUserToApp))
 
 if (process.env.NODE_ENV === "development") {
-    server.listen(serverPort, () => console.log(`Listening at http://${host}:${serverPort}`))
+  server.listen(serverPort, () => console.log(`Listening at http://${host}:${serverPort}`))
 }
 
 if (process.env.NODE_ENV === "production") {
 
-    // start the server
-    var httpsServer = https.createServer(options, server).listen(serverPort, function () {
-        console.log("Express server listening on port " + serverPort);
-    });
+  // start the server
+  var httpsServer = https.createServer(options, server).listen(serverPort, function () {
+    console.log("Express server listening on port " + serverPort);
+  });
 
-    // Redirect from http port 80 to https
-    http.createServer(function (req, res) {
-        let reqUrl = req.url;
-        if (reqUrl === "/") {
-            reqUrl = "/index.html";
-        }
-        var url = "https://" + req.headers['host'] + reqUrl;
-        console.log("Redirecting to " + url);
-        res.writeHead(301, { "Location": url });
-        res.end();
-    }).listen(80);
+  // Redirect from http port 80 to https
+  http.createServer(function (req, res) {
+    let reqUrl = req.url;
+    if (reqUrl === "/") {
+      reqUrl = "/index.html";
+    }
+    var url = "https://" + req.headers['host'] + reqUrl;
+    console.log("Redirecting to " + url);
+    res.writeHead(301, { "Location": url });
+    res.end();
+  }).listen(80);
 }

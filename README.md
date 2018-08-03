@@ -18,8 +18,8 @@ This is a server-side rendering application that is built with the following sta
 * react
 * react-router
 * redux
-  * with thunk middleware
-  * with redux-dev-tools
+ * with thunk middleware
+ * with redux-dev-tools
 * express
 * axios
 * scss or css modules
@@ -38,7 +38,7 @@ This is a server-side rendering application that is built with the following sta
 
 * `npm run watch-dev` to bundle and run the server, plus utilizing nodemon for a file watcher.
 * `npm run build-prod` to bundle the app for production. This does not start a server.
-  * `npm run start-prod` to start the server in production mode; this will probably fail without something like ngnix in place as it will try to run on port 80.
+ * `npm run start-prod` to start the server in production mode; this will probably fail without something like ngnix in place as it will try to run on port 80.
 
 ## Webpack aliases
 
@@ -46,14 +46,14 @@ To eliminate the `../../../../../` module reference hell, there are a series of 
 
 ```
 {
-  connected: "./src/shared/components/connected",
-  constants: "./src/shared/constants",
-  contexts: "./src/shared/contexts",
-  presentational: "./src/shared/components/presentational",
-  store: "./src/shared/store",
-  routes: "./src/shared/routes",
-  scss: "./src/shared/scss",
-  svg: "./src/shared/svg"
+ connected: "./src/shared/components/connected",
+ constants: "./src/shared/constants",
+ contexts: "./src/shared/contexts",
+ presentational: "./src/shared/components/presentational",
+ store: "./src/shared/store",
+ routes: "./src/shared/routes",
+ scss: "./src/shared/scss",
+ svg: "./src/shared/svg"
 }
 ```
 
@@ -78,8 +78,8 @@ This module is used by both client and server for getting the React components t
 import AwesomeComponent from "connected/AwesomeComponent"
 
 {
-  path: "/awesome",
-  component: AwesomeComponent
+ path: "/awesome",
+ component: AwesomeComponent
 }
 ```
 

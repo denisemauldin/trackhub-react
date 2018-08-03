@@ -9,15 +9,15 @@ import React from "react"
 
 const store = initStore(history)
 const {
-    app: {
-        userPermissions
-    }
+  app: {
+    userPermissions
+  }
 } = store.getState()
 
 hydrate((
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <App history={history} userPermissions={userPermissions} />
-        </ConnectedRouter>
-    </Provider>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App history={history} userPermissions={userPermissions} />
+    </ConnectedRouter>
+  </Provider>
 ), document.getElementById("root"))

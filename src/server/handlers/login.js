@@ -7,17 +7,17 @@ import React from "react"
 import render from "../views/render-login"
 
 const login = (req, res, next) => {
-    const store = initStore(history)
-    
-    res.status(200).send(render(
-        <Provider store={store}>
-            <Router context={{}} location={req.originalUrl}>
-                <Login />
-            </Router>
-        </Provider>,
-        store.getState()
-    ))
-    res.end()
+  const store = initStore(history)
+  
+  res.status(200).send(render(
+    <Provider store={store}>
+      <Router context={{}} location={req.originalUrl}>
+        <Login />
+      </Router>
+    </Provider>,
+    store.getState()
+  ))
+  res.end()
 }
 
 export default login

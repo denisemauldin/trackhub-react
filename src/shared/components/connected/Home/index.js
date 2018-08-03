@@ -7,53 +7,53 @@ import TrackhubGenerator from "connected/TrackhubGenerator/TrackhubGenerator"
 
 class Home extends React.Component {
 
-  // optional external data needs
-  // static loadData(storeDispatch, params) {
-  //   return storeDispatch(loadPageData(`https://jsonplaceholder.typicode.com/posts`))
-  // }
+ // optional external data needs
+ // static loadData(storeDispatch, params) {
+ //  return storeDispatch(loadPageData(`https://jsonplaceholder.typicode.com/posts`))
+ // }
 
-  // optional custom data check
-  // static checkData(props) {
-  //   const {
-  //     page: {
-  //       slug: pageSlug
-  //     }
-  //   } = props
+ // optional custom data check
+ // static checkData(props) {
+ //  const {
+ //   page: {
+ //    slug: pageSlug
+ //   }
+ //  } = props
 
-  //   return pageSlug === "homepage"
-  // }
+ //  return pageSlug === "homepage"
+ // }
 
-  constructor(props) {
-    super(props)
-  }
-  componentDidMount() {
-    this.fetchData()
-  }
+ constructor(props) {
+  super(props)
+ }
+ componentDidMount() {
+  this.fetchData()
+ }
 
-  fetchData = () => {
-    console.log("fetchy fetch");
-  var url = `/data/api/talen_dimer/?assembled=False&page_size=1000`;
+ fetchData = () => {
+  console.log("fetchy fetch");
+ var url = `/data/api/talen_dimer/?assembled=False&page_size=1000`;
 
-  axios({
-      url: url,
-      headers: {
-          "content-type": "application/json"
-      },
-  })
-      .then((result) => {
-           console.log(result)
-      })
-  }
+ axios({
+   url: url,
+   headers: {
+     "content-type": "application/json"
+   },
+ })
+   .then((result) => {
+      console.log(result)
+   })
+ }
 
-  render() {
-    return (
-      <div className={styles.homepage}>
-        <h1>Custom Trackhub Generator</h1>
-        <p>Generate custom trackhubs</p>
-        <TrackhubGenerator />
-      </div>
-    )
-  }
+ render() {
+  return (
+   <div className={styles.homepage}>
+    <h1>Custom Trackhub Generator</h1>
+    <p>Generate custom trackhubs</p>
+    <TrackhubGenerator />
+   </div>
+  )
+ }
 }
 
 export default hocPageLoader(Home)

@@ -1,0 +1,18 @@
+# Automatically add new line to end of all files on save.
+[*]
+insert_final_newline = true
+
+# 2 space indentation for SASS/CSS
+[*.{scss,sass,css}]
+indent_style = space
+indent_size = 2
+
+# Set all JS to tab => space*2
+[js/**.js]
+indent_style = space
+indent_size = 2
+
+# Set all JSX to tab => space*2
+[js/**.jsx]
+indent_style = space
+indent_size = 2
