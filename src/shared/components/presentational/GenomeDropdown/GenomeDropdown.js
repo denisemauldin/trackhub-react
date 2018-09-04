@@ -10,7 +10,7 @@ class GenomeDropdown extends Component {
     }
     let genomes = this.props.genomes;
     let genomeOptions = genomes.map((genome) =>
-      <option key={genome.label}>{genome.label}</option>
+      <option key={genome}>{genome}</option>
     );
     return(
       <div>

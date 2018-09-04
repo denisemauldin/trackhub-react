@@ -14,23 +14,18 @@ class GenomeRetrieve extends Component {
 
   componentDidMount() {
     let initialGenomes = [];
-    fetch('/data/api/genome/?has_browser_label=True&page_size=50',
-      {
-        credentials: 'include'
-      })
+    fetch('https://rest.ensembl.org/info/assembly/homo_sapiens?content-type=application/json')
     .then(response => {
       return response.json();
     }).then(data => {
-      initialGenomes = data.results.sort((a,b) => {
-        return a.label < b.label ? -1 : 1
-      });
       this.setState({
-        genomes: initialGenomes,
+        genomes: data.coord_system_versions,
       });
     });
   }
 
   render() {
+    console.log('state genomes :', this.state.genomes);
     return (
       <GenomeDropdown genomes={this.state.genomes} />
     );
