@@ -1,5 +1,5 @@
 import { Types } from "../constants/app-types";
-import {ViewportTypeToPixels} from "constants/viewport"
+import { ViewportTypeToPixels } from "constants/viewport"
 import axios from "libs/axios"
 
 
