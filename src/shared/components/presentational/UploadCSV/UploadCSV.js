@@ -1,30 +1,27 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import CSVReader from "react-csv-reader";
 import propTypes from "prop-types"
+import VerifyCSV from "../VerifyCSV/VerifyCSV";
 
 class UploadCSV extends Component {
  constructor(props) {
   super(props)
  }
 
- // handleForce = data => {
- //  console.log(data);
- // };
-
  handleUpload = (data) => {
-  this.props.onFileUpload(data)
+   let vc = new VerifyCSV()
+  vc.verifyHeader(data) ? this.props.onFileUpload(vc.removeEmpty(data)) : alert("Invalid Head Row")
  }
+
 
  render() {
   return (
    <div className="container">
-   <CSVReader
-   cssClass="react-csv-input"
-   label="Select CSV"
-   onFileLoaded={this.handleUpload}
-   />
-   <p>and then open the console</p>
+    <CSVReader
+      cssClass="react-csv-input"
+      label="Select CSV"
+      onFileLoaded={this.handleUpload}
+    />
    </div>
   );
  }

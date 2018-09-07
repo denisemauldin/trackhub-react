@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './TrackhubGenerator.scss'
 import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
+import RenderCSV from 'presentational/RenderCSV/RenderCSV';
 
 class TrackhubGenerator extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class TrackhubGenerator extends Component {
       short: "",
       long: "",
       contact: "",
-      display: "none"
+      display: "none",
+      verifiedCSV: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +36,6 @@ class TrackhubGenerator extends Component {
   }
 
   handleSubmit(e) {
-    console.table(this.state)
     e.preventDefault();
   }
 
@@ -53,7 +54,7 @@ class TrackhubGenerator extends Component {
   }
 
   displayCSV = (data) => {
-    console.log(data);
+    this.setState({verifiedCSV: data})
   }
 
   render() {
@@ -159,6 +160,7 @@ class TrackhubGenerator extends Component {
 
           <input type="submit" value="Submit" className={classes.button} />
         </form>
+        <RenderCSV csv={this.state.verifiedCSV}/>
       </React.Fragment>
     )
   }

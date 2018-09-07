@@ -25,7 +25,6 @@ class GenomeRetrieve extends Component {
   }
 
   render() {
-    console.log('state genomes :', this.state.genomes);
     return (
       <GenomeDropdown genomes={this.state.genomes} />
     );
