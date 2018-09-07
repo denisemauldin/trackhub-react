@@ -61,80 +61,23 @@ class TrackhubGenerator extends Component {
     return(
       <React.Fragment>
       <UploadCSV onFileUpload={this.displayCSV} />
+      <br />
       <form onSubmit={this.handleSubmit} className={classes.form}>
         <label>
-          hub name:
-          <input
-            type="text"
-            name="hub_name"
-            onChange={this.handleChange}
-            />
-        </label>
-        <label>
           Genome assembly (e.g. hg38):
-          {
-          // <input
-          //  type="text"
-          //  name="genomes_file"
-          //  onChange={this.handleChange}
-          // />
-          }
           <GenomeRetrieve />
           </label>
+          <br />
           <label>
-            Column containing the aggregation for each sample:
+            hub name:
             <input
               type="text"
-              name="agg_col"
+              name="hub_name"
               onChange={this.handleChange}
               />
           </label>
           <label>
-            Column containing the custom label for each track:
-            <input
-              type="text"
-              name="label_col"
-              onChange={this.handleChange}
-              />
-          </label>
-          <label>
-            Column containing the color for each track:
-            <input
-              type="text"
-              name="color_col"
-              onChange={this.handleChange}
-              />
-          </label>
-          <label>
-            Column containing the value to sort each sample:
-            <input
-              type="text"
-              name="sort_col"
-              onChange={this.handleChange}
-              />
-          </label>
-          <label>
-            Column containing the aggregation for each sample:
-            <input
-              type="text"
-              name="aggregation_column"
-              onChange={this.handleChange}
-              />
-          </label>
-          <label>
-            <div
-              onMouseOver={this.handleMouseIn.bind(this)} onMouseOut={this.handleMouseOut.bind(this)}>
-              OPTIONAL list of track types to use:
-              <div style={{display: this.state.display}}>Use the "Shorthand" values from the table at 'https://lims.altiusinstitute.org/FileData/FilePurpose' </div>
-              </div>
-            <input
-              type="text"
-              name="track_types"
-              onChange={this.handleChange}
-              />
-          </label>
-          <label>
-            shortLabel:
+            hub shortLabel:
             <input
               type="text"
               name="short_label"
@@ -142,7 +85,7 @@ class TrackhubGenerator extends Component {
               />
           </label>
           <label>
-            longLabel:
+            hub longLabel:
             <input
               type="text"
               name="long_label"
