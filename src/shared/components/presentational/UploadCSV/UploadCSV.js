@@ -9,8 +9,9 @@ class UploadCSV extends Component {
  }
 
  handleUpload = (data) => {
-   let vc = new VerifyCSV()
-  vc.verifyHeader(data) ? this.props.onFileUpload(vc.removeEmpty(data)) : alert("Invalid Head Row")
+  let vc = new VerifyCSV()
+  data = vc.cleanEntry(data)
+  vc.verifyHeader(data) ? this.props.onFileUpload(vc.removeEmpty(data)) : alert("Invalid Head Row. File not parsed.")
  }
 
 

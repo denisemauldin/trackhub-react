@@ -10,12 +10,13 @@ class TrackhubGenerator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hub_name: "",
+      hubName: "",
       genome: "",
-      short_label: "",
-      long_label: "",
-      contact_email: "",
-      verifiedCSV: false
+      shortLabel: "",
+      longLabel: "",
+      email: "",
+      s3BucketName: "",
+      samples: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +24,6 @@ class TrackhubGenerator extends Component {
   }
 
   handleChange(e) {
-    console.log('trachub gen change :', e);
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -38,7 +38,7 @@ class TrackhubGenerator extends Component {
   }
 
   displayCSV = (data) => {
-    this.setState({verifiedCSV: data})
+    this.setState({samples: data})
   }
 
   render() {
@@ -47,6 +47,14 @@ class TrackhubGenerator extends Component {
       <UploadCSV onFileUpload={this.displayCSV} />
       <br />
       <form onSubmit={this.handleSubmit} className={classes.form}>
+      <label>
+        <input
+          type="text"
+          name="s3BucketName"
+          placeholder="dm-trackhubs"
+          onChange={this.handleChange} 
+        />
+      </label>
         <label>
           Genome assembly (e.g. hg38):
           <GenomeRetrieve
@@ -60,7 +68,7 @@ class TrackhubGenerator extends Component {
             hub name:
             <input
               type="text"
-              name="hub_name"
+              name="hubName"
               onChange={this.handleChange}
               />
           </label>
@@ -68,7 +76,7 @@ class TrackhubGenerator extends Component {
             hub shortLabel:
             <input
               type="text"
-              name="short_label"
+              name="shortLabel"
               onChange={this.handleChange}
               />
           </label>
@@ -76,7 +84,7 @@ class TrackhubGenerator extends Component {
             hub longLabel:
             <input
               type="text"
-              name="long_label"
+              name="longLabel"
               onChange={this.handleChange}
               />
           </label>
@@ -84,7 +92,7 @@ class TrackhubGenerator extends Component {
             contact email:
             <input
               type="text"
-              name="contact_email"
+              name="email"
               onChange={this.handleChange}
               />
           </label>

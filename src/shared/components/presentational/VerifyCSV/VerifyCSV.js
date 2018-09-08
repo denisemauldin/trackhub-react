@@ -15,6 +15,7 @@ class VerifyCSV extends Component {
        }  
   }
   
+  // TODO: make this its own component
   isEmpty = (value) => {return value = ""}
   removeEmpty = (props) => {
     let notEmpty = props.filter((entry) => {
@@ -28,6 +29,15 @@ class VerifyCSV extends Component {
       return true;
     });
     return notEmpty
+  }
+
+  cleanEntry = (props) => {
+    props.map((entry) => {
+      for(let i = 0; i < entry.length; i++){
+        entry[i] = entry[i].trim();
+      }
+    });
+    return props;
   }
 
 }
