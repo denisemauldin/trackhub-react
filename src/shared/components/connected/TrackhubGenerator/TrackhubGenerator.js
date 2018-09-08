@@ -4,7 +4,7 @@ import classes from './TrackhubGenerator.scss'
 import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
 import RenderCSV from 'presentational/RenderCSV/RenderCSV';
-import inputToJSON from 'libs/inputToJSON/inputToJSON';
+import {inputToJSON} from 'libs/inputToJSON/inputToJSON';
 
 class TrackhubGenerator extends Component {
   constructor(props) {

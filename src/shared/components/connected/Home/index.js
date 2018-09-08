@@ -31,7 +31,6 @@ class Home extends React.Component {
  }
 
  fetchData = () => {
-  console.log("fetchy fetch");
  var url = `/data/api/talen_dimer/?assembled=False&page_size=1000`;
 
  axios({

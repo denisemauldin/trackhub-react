@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CSVReader from "react-csv-reader";
 import propTypes from "prop-types"
-import VerifyCSV from "../VerifyCSV/VerifyCSV";
+import {verifyHeader, removeEmpty, cleanEntry} from "libs/VerifyCSV/VerifyCSV";
 
 class UploadCSV extends Component {
  constructor(props) {
@@ -9,10 +9,9 @@ class UploadCSV extends Component {
  }
 
  handleUpload = (data) => {
-  let vc = new VerifyCSV()
-  data = vc.cleanEntry(data)
-  vc.verifyHeader(data) ? this.props.onFileUpload(vc.removeEmpty(data)) : alert("Invalid Head Row. File not parsed.")
- }
+  data = cleanEntry(data)
+  verifyHeader(data) ? this.props.onFileUpload(removeEmpty(data)) : alert("Invalid Head Row. File not parsed.")
+}
 
 
  render() {
