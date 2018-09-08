@@ -5,6 +5,15 @@ class GenomeDropdown extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount() {
+    // this sets the default value for the dropdown in 
+    // the parent component
+    let gd = this.refs.genomeDropdown;
+    let e = new Event('change', {bubbles: true});
+    gd.dispatchEvent(e)
+  }
+
   render() {
     if (!this.props.genomes) {
       return null;
@@ -18,8 +27,11 @@ class GenomeDropdown extends Component {
     return(
       <div>
         <select
+          ref="genomeDropdown"
           name="genome"
-          onChange={handleChange}>
+          onChange={handleChange}
+          value={this.props.selected}
+        >
           {genomeOptions}
         </select>
       </div>

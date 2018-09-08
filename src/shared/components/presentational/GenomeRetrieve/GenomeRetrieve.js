@@ -8,6 +8,7 @@ class GenomeRetrieve extends Component {
     super(props);
     this.state = {
       genomes: [],
+      default: []
     };
   }
 
@@ -19,13 +20,19 @@ class GenomeRetrieve extends Component {
     }).then(data => {
       this.setState({
         genomes: data.coord_system_versions,
+        defaultGenome: data.coord_system_versions[0]
       });
     });
   }
 
   render() {
+    if(this.state.genomes.length === 0) {return null};
     return (
-      <GenomeDropdown genomes={this.state.genomes} onChangeGenome={this.props.onChangeGenome} />
+      <GenomeDropdown 
+        genomes={this.state.genomes} 
+        onChangeGenome={this.props.onChangeGenome}
+        selected={this.state.defaultGenome}
+      />
     );
   }
 }

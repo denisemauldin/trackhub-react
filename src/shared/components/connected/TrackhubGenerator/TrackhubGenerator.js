@@ -23,6 +23,7 @@ class TrackhubGenerator extends Component {
   }
 
   handleChange(e) {
+    console.log('trachub gen change :', e);
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -33,7 +34,6 @@ class TrackhubGenerator extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('wut?  :', this.state);
     inputToJSON(this.state)
   }
 
