@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
+import propTypes from "prop-types"
 import classes from './TrackhubGenerator.scss'
 import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
 import RenderCSV from 'presentational/RenderCSV/RenderCSV';
+import inputToJSON from 'libs/inputToJSON/inputToJSON';
 
 class TrackhubGenerator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hub: "",
+      hub_name: "",
       genome: "",
-      aggregationColumn: "",
-      labelColumn: "",
-      colorColumn: "",
-      sortColumn: "",
-      trackTypes: "",
-      short: "",
-      long: "",
-      contact: "",
-      display: "none",
+      short_label: "",
+      long_label: "",
+      contact_email: "",
       verifiedCSV: false
     };
 
@@ -37,20 +33,8 @@ class TrackhubGenerator extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-  }
-
-  handleMouseIn() {
-    this.setState({
-      hover: true,
-      display: "block"
-    })
-  }
-
-  handleMouseOut() {
-    this.setState({
-      hover: false,
-      display: "none"
-    })
+    console.log('wut?  :', this.state);
+    inputToJSON(this.state)
   }
 
   displayCSV = (data) => {
@@ -65,7 +49,11 @@ class TrackhubGenerator extends Component {
       <form onSubmit={this.handleSubmit} className={classes.form}>
         <label>
           Genome assembly (e.g. hg38):
-          <GenomeRetrieve />
+          <GenomeRetrieve
+            type="text"
+            name="genome"
+            onChangeGenome={this.handleChange}
+           />
           </label>
           <br />
           <label>
@@ -108,6 +96,8 @@ class TrackhubGenerator extends Component {
     )
   }
 }
+
+ 
 // send JSON object to Flask
 // Flask runs Mark's script (create custom trackhub) using all the parser arguments
 // data store returns an object to the user

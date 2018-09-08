@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import {Route, withRouter} from 'react-router-dom';
+import propTypes from "prop-types"
 import GenomeDropdown from 'presentational/GenomeDropdown/GenomeDropdown';
 
 
 class GenomeRetrieve extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       genomes: [],
     };
@@ -26,9 +25,13 @@ class GenomeRetrieve extends Component {
 
   render() {
     return (
-      <GenomeDropdown genomes={this.state.genomes} />
+      <GenomeDropdown genomes={this.state.genomes} onChangeGenome={this.props.onChangeGenome} />
     );
   }
 }
+
+GenomeRetrieve.propTypes = {
+  onChangeGenome: propTypes.func
+ };
 
 export default GenomeRetrieve;
