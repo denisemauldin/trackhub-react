@@ -30,7 +30,6 @@ class GenomeDropdown extends Component {
           ref="genomeDropdown"
           name="genome"
           onChange={handleChange}
-          value={this.props.selected}
         >
           {genomeOptions}
         </select>
