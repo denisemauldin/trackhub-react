@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from "prop-types"
+import axios from 'libs/axios';
 import classes from './TrackhubGenerator.scss'
 import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
@@ -34,7 +34,29 @@ class TrackhubGenerator extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    inputToJSON(this.state)
+    let data = inputToJSON(this.state)
+    this.sendTrackhub(data)
+  }
+
+  sendTrackhub = (data) => {
+    axios({
+      url: 'https://rmvpv6ey05.execute-api.us-west-2.amazonaws.com/default/create-trackhub-write-s3-bucket/',
+      method: "post",
+      headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Accept": "application/json",
+          "X-Api-Key": "5OpLIMUC4L9KeE16luwaZ8lAI6TcqUNx4jVfuB8K"
+      },
+      json: true,
+      data: data
+    })
+    .then(response => {
+      console.log('response :', response);
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
   displayCSV = (data) => {
