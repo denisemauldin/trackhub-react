@@ -20,7 +20,7 @@ function getErrorText(error) {
     // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
     // http.ClientRequest in node.js
     errorText = "Request made but no response was received."
-  } 
+  }
   else {
     // Something happened in setting up the request that triggered an Error
     errorText = error.message
@@ -66,7 +66,7 @@ router.get("/api/*", function (req, res, next) {
     }
 
     axios(settings)
-      .then(({data}) => {
+      .then(({ data }) => {
         res.status(200).send(data)
         res.end()
       })
@@ -86,33 +86,23 @@ router.get("/api/*", function (req, res, next) {
 router.post("/auth", function (req, res, next) {
   try {
     const {
-      pass: password,
-      user: username
+      displayName: displayName,
+      email: email,
+      uid: uid
     } = req.body
 
-    const dataApi = req.app.get("dataApi")
-
-    axios({
-      url: `${dataApi}/api-token-auth/`,
-      method: "post",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      data: querystring.stringify({ password, username })
-    })
-      .then(({ data }) => {
-        req.session.dataToken = data.token
-        req.session.username = username
-        req.session.save()
-        res.status(200).send("Login successful.")
-        res.end()
-      })
-      .catch(e => {
-        writeErrorForServerLog("/auth", `${dataApi}/api-token-auth/`, e)
-        var errorReport = getErrorText(e)
-        res.status(errorReport.status).send(errorReport.text)
-        res.end()
-      })
+    if (displayName && uid && email) {
+      req.session.email = email
+      req.session.displayName = displayName
+      req.session.uid = uid
+      req.session.save()
+      res.status(200).send("Login successful.")
+      res.end()
+    } else {
+      writeErrorForServerLog("/auth", "No displayName, uid, or email")
+      res.status(500).send("No displayName, uid, or email")
+      res.end()
+    }
   }
   catch (e) {
     writeErrorForServerLog("/auth", "", e)

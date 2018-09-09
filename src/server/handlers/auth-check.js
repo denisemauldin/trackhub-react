@@ -1,9 +1,9 @@
 export default function authCheck(noAuthHandler, handler) {
   return function(req, res, next) {
-    const hasToken = req.session.dataToken || false
-    const hasUsername = req.session.username || false
+    const hasDisplayName = req.session.displayName || false
+    const hasEmail = req.session.email || false
 
-    hasToken && hasUsername
+    hasEmail && hasDisplayName
       ? handler(req, res, next)
       : noAuthHandler(req, res, next)
   }

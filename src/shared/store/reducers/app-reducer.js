@@ -1,5 +1,6 @@
-import { Types as AppTypes} from "../constants/app-types"
-import { Types as LoginTypes} from "../constants/login-types"
+import { Types as AppTypes } from "../constants/app-types"
+import { Types as LoginTypes } from "../constants/login-types"
+import { Types as FirebaseTypes } from "../constants/firebase-types"
 import ViewportTypes from "constants/viewport"
 
 const initialState = {
@@ -11,7 +12,6 @@ const initialState = {
   messages: [],
   modal: null,
   userDetails: {},
-  userPermissions: {},
   viewportSizeName: ViewportTypes.none,
   winHeight: 0,
   winScrollTop: 0,
@@ -22,9 +22,9 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case AppTypes.HIDE_MODAL:
     case AppTypes.SHOW_MODAL:
-      return {...state, modal: action.modal}
+      return { ...state, modal: action.modal }
     case AppTypes.ADD_APP_MESSAGE:
-      return {...state, messages: [...state.messages, action.message]}
+      return { ...state, messages: [...state.messages, action.message] }
     case AppTypes.GET_USER_DETAILS_FAIL:
     case AppTypes.GET_USER_DETAILS_SUCCESS:
     case AppTypes.GET_USER_PERMISSIONS_FAIL:
@@ -32,16 +32,37 @@ export default function reducer(state = initialState, action) {
     case AppTypes.INIT_VIEWPORT_VALUES:
     case AppTypes.SET_VIEWPORT_SCROLL:
     case AppTypes.SET_VIEWPORT_SIZE:
-      return {...state, ...action.payload}
+      return { ...state, ...action.payload }
     case AppTypes.ADD_APP_MESSAGE:
-      return {...state, messages: [...state.messages, action.message]}
+      return { ...state, messages: [...state.messages, action.message] }
     case AppTypes.SET_IS_MOBILE_BROWSER:
-      return {...state, isMobileBrowser: action.isMobile}
+      return { ...state, isMobileBrowser: action.isMobile }
     case LoginTypes.LOGIN_FAIL:
-      return {...state, loginErrorMessage: action.loginError}
+      console.log("LOGIN FAIL", action)
+      return { ...state, loginErrorMessage: action.loginError }
     case LoginTypes.LOGIN_START:
+      return state
     case LoginTypes.LOGIN_SUCCESS:
-      return {...state, loginErrorMessage: null}
+      console.log("LOGIN SUCCESS", action)
+      return { ...state, loginErrorMessage: null }
+    case FirebaseTypes.USER_CREATE_FAIL:
+      return state
+    case FirebaseTypes.USER_CREATE_START:
+      console.log("user creat estart")
+      return state
+    case FirebaseTypes.USER_CREATE_SUCCESS:
+      console.log("firebase user_create_success", action)
+      return { ...state, userDetails: action['user'], userErrorMessage: null }
+    case FirebaseTypes.FETCH_USER_FAIL:
+      return { ...state, userErrorMessage: action.fetchError }
+    case FirebaseTypes.FETCH_USER_START:
+      return state
+    case FirebaseTypes.FETCH_USER_SUCCESS:
+      console.log("firebase fetch_user_success", action)
+      return { ...state, userDetails: action['user'], userErrorMessage: null }
+    case FirebaseTypes.USER_SESSION_LOAD:
+      return {...state, userDetails: action['user']}
+
     default:
       return state
   }

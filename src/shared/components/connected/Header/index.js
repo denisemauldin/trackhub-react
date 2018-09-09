@@ -45,7 +45,7 @@ class Header extends React.Component {
       userDetails
     } = this.props
     // note the space at the end of this line; it separates it from the sign out link
-    const fullName = `Hi, ${userDetails.first_name} ${userDetails.last_name}. `
+    const displayName = `Hi, ${userDetails.displayName}. `
 
     return (
       <React.Fragment>
@@ -54,7 +54,7 @@ class Header extends React.Component {
         </div>
         <div className={styles.usermenu}>
           <div className={styles.usermenuContainer}>
-            <span>{ fullName }(</span>
+            <span>{ displayName }(</span>
             <a href="/logout" onClick={this.handleSignOutClick}>sign out</a>
             <span>)</span>
           </div>
@@ -83,7 +83,6 @@ class Header extends React.Component {
 const mapStateToProps = function(store) {
   return {
     userDetails: store.app.userDetails,
-    userPermissions: store.app.userPermissions
   }
 }
 
