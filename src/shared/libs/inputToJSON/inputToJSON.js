@@ -11,8 +11,21 @@ const formatRows = (data) => {
 }
 
 const generateTrackType = (samples) => {
+  let typeConvert = {
+    'bigBed': 'bigBed',
+    'bb': 'bigBed',
+    'bed': 'bigBed',
+    'bigWig': 'bigWig',
+    'wig': 'bigWig',
+    'bw': 'bigWig',
+    'vcfTabix': 'vcfTabix',
+    'bam': 'bam'
+  }
   for (let i = 0; i < samples.length; i++){
-    samples[i]["trackType"] = samples[i]["URL"].split(".").pop()
+    let extension = samples[i]["URL"].split(".").pop()
+    if (typeConvert[extension]) {
+      samples[i]["trackType"] = typeConvert[extension]
+    }
   }
   return samples
 }

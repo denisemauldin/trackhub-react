@@ -21,8 +21,8 @@ class GenomeDropdown extends Component {
     let genomes = this.props.genomes;
     let handleChange = this.props.onChangeGenome;
 
-    let genomeOptions = genomes.map((genome) =>
-      <option key={genome}>{genome}</option>
+    let genomeOptions = genomes.map((genome,i) =>
+      <option key={genome} value={this.props.ucscGenomes[i]}>{genome}</option>
     );
     return(
       <div>
@@ -30,7 +30,6 @@ class GenomeDropdown extends Component {
           ref="genomeDropdown"
           name="genome"
           onChange={handleChange}
-          value={this.props.selected}
         >
           {genomeOptions}
         </select>
