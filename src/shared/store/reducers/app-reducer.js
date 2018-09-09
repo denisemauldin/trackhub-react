@@ -38,27 +38,22 @@ export default function reducer(state = initialState, action) {
     case AppTypes.SET_IS_MOBILE_BROWSER:
       return { ...state, isMobileBrowser: action.isMobile }
     case LoginTypes.LOGIN_FAIL:
-      console.log("LOGIN FAIL", action)
       return { ...state, loginErrorMessage: action.loginError }
     case LoginTypes.LOGIN_START:
       return state
     case LoginTypes.LOGIN_SUCCESS:
-      console.log("LOGIN SUCCESS", action)
       return { ...state, loginErrorMessage: null }
     case FirebaseTypes.USER_CREATE_FAIL:
       return state
     case FirebaseTypes.USER_CREATE_START:
-      console.log("user creat estart")
       return state
     case FirebaseTypes.USER_CREATE_SUCCESS:
-      console.log("firebase user_create_success", action)
       return { ...state, userDetails: action['user'], userErrorMessage: null }
     case FirebaseTypes.FETCH_USER_FAIL:
       return { ...state, userErrorMessage: action.fetchError }
     case FirebaseTypes.FETCH_USER_START:
       return state
     case FirebaseTypes.FETCH_USER_SUCCESS:
-      console.log("firebase fetch_user_success", action)
       return { ...state, userDetails: action['user'], userErrorMessage: null }
     case FirebaseTypes.USER_SESSION_LOAD:
       return {...state, userDetails: action['user']}
