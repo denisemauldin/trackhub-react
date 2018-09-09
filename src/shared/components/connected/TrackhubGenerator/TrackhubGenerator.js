@@ -99,7 +99,7 @@ class TrackhubGenerator extends Component {
 
           <input type="submit" value="Submit" className={classes.button} />
         </form>
-        <RenderCSV csv={this.state.verifiedCSV}/>
+        <RenderCSV csv={this.state.samples}/>
       </React.Fragment>
     )
   }
