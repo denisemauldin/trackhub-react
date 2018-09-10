@@ -1,3 +1,34 @@
 .homepage {
-  padding-top: 50px;
+  padding-top: 30px;
  }
+
+ .list {
+  list-style: none;
+ }
+ 
+ .item {
+  padding: 15px 10px;
+  box-sizing: border-box;
+  border-top: 1px solid #FAFAFA;
+  border-bottom: 1px solid #F2F2F2;
+  cursor: pointer;
+
+  &.isSelected {
+      color: #fff;
+      background-color: #d08018;
+  }
+}
+
+.hubName {
+  flex-grow: 1;
+  box-sizing: border-box;
+  padding-right: 10px;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.shortLabel {
+  flex-grow: 0;
+  font-size: 1.4rem;
+  text-align: right;
+}

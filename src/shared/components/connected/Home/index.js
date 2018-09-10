@@ -44,7 +44,7 @@ class Home extends React.Component {
               <p className={styles.primary}>View Trackhubs</p>
             </div>
             <p className={styles.text}>View your custom trackhub in Biodalliance</p>
-            <div className={`${styles.centered} ${styles.buttonSpacer}`}><Link className="button" to="/trackhublist">Visualize</Link></div>
+            <div className={`${styles.centered} ${styles.buttonSpacer}`}><Link className="button" to="/trackhubs">Visualize</Link></div>
           </div>
         </div>
       </div>
