@@ -1,7 +1,8 @@
 // put your global app styles here
-$button: #e2ae79;
+$button: #d08018;
+// light orange ffbe69
 $white: #ffffff;
-$button-disabled: #e2e2e2;
+$button-disabled: #094579;
 $button-disabled-border: #c8c8c8;
 
 :global(.appRow) {
@@ -45,8 +46,10 @@ button {
   white-space: nowrap;
 
   &:hover {
-    background-color: $white;
-    color: $button;
+    background-color: $button-disabled;
+    border-color: white;
+    color: white;
+    text-decoration: none;
    }
 
    &:disabled {
@@ -83,7 +86,7 @@ button {
   border: 1px solid #979797;
 
   &:global(.isSelected) {
-    background-color: #EAAC70;
+    background-color: #d08018;
   }
 }
 

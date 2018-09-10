@@ -36,6 +36,7 @@ export default function App(props) {
                 ? Redirect
                 : Route
 
+              passThroughProps['history'] = props.history
               return <RouterElement key={`route-${i}`} {...passThroughProps} />
             })
           }

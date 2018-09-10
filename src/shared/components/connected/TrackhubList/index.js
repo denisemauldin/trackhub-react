@@ -17,14 +17,20 @@ class TrackhubList extends Component {
     if (this.props.loading) {
       return <div className={styles.homepage}>Loading trackhub list</div>
     }
-    if (this.props.trackhubErrorMessage) {
-      return <div className={styles.homepage}>Failed to load trackhub {this.props.trackhubErrorMessage}</div>
+    if (!this.props.trackhubs) {
+      return null
     }
+    if (this.props.trackhubErrorMessage) {
+      return <div className={styles.homepage}>Failed to load trackhubs {this.props.trackhubErrorMessage}</div>
+    }
+    if (this.props.trackhubs.length === 0) {
+      return <div className={styles.homepage}>No trackhubs in list.</div>
+     }
 
     return(
       <div className={styles.homepage}>
         { this.props.trackhubs.map((trackhub,i) => {
-        return <div key={i + trackhub.shortName + trackhub.user}>{trackhub.shortName}</div>
+        return <div key={i + trackhub.data.hubName}>{trackhub.data.hubName} - {trackhub.data.shortLabel}</div>
         })}
       </div>
     )

@@ -2,6 +2,7 @@ export const Types = {
   FETCH_TRACKHUBS_FAIL: "firebase/FetchTrackhubsFail",
   FETCH_TRACKHUBS_START: "firebase/FetchTrackhubsStart",
   FETCH_TRACKHUBS_SUCCESS: "firebase/FetchTrackhubsSuccess",
+  SAVE_TRACKHUB: "firebase/trackhub/save",
   FETCH_USER_SUCCESS: 'firebase/user/fetch/success',
   FETCH_USER_START: 'firebase/user/fetch/start',
   FETCH_USER_FAIL: 'firebase/user/fetch/fail',

@@ -51,6 +51,9 @@ class Header extends React.Component {
       <React.Fragment>
         <div className={`clearfix ${styles.links}`}>
           <NavLink className={styles.link} to="/" exact={true} activeClassName={styles.isActive}>Home</NavLink>
+          <NavLink className={styles.link} to="/generate" activeClassName={styles.isActive}>Generate Trackhubs</NavLink>
+          <NavLink className={styles.link} to="/trackhubs" activeClassName={styles.isActive}>View Trackhubs</NavLink>
+
         </div>
         <div className={styles.usermenu}>
           <div className={styles.usermenuContainer}>
