@@ -1,11 +1,16 @@
 import Home from "connected/Home"
 import DisplayTrackhub from "connected/DisplayTrackhub"
 import TrackhubList from "../components/connected/TrackhubList";
+import TrackhubGenerator from "connected/TrackhubGenerator/TrackhubGenerator"
 
 const globalRoutes = [
   {
     path: "/trackhublist",
     component: TrackhubList
+  },
+  {
+    path: "/generate",
+    component: TrackhubGenerator
   },
   {
     path: "/trackhub",

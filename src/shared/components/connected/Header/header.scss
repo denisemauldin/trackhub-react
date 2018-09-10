@@ -22,7 +22,7 @@
   }
   
   &.isActive {
-    color: #EAAC70;
+    color: #d08018;
 
     &::after {
       content: "";
@@ -32,7 +32,7 @@
       width: 100%;
       height: 9px;
       color: #fff;
-      background-color: #EAAC70;
+      background-color: #d08018;
     }
   }
 }

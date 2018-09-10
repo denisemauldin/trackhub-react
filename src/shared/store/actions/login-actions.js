@@ -64,7 +64,7 @@ export function fetchUser(user) {
 export function saveSession(user) {
   // save the information from firebase to the node session
   return (dispatch) => {
-    console.log("savesession", user)
+
     axios({
       url: "/data/auth",
       method: "post",
@@ -78,7 +78,6 @@ export function saveSession(user) {
       }
     })
     .then((data) => {
-      console.log("saveSession got data", data)
       dispatch({ type: Types.LOGIN_SUCCESS })
       window.location.href = "/"
     })

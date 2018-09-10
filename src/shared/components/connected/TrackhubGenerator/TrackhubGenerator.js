@@ -1,11 +1,18 @@
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 import React, { Component } from 'react';
 import axios from 'libs/axios';
 import classes from './TrackhubGenerator.scss'
 import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
 import RenderCSV from 'presentational/RenderCSV/RenderCSV';
+<<<<<<< HEAD
 import {inputToJSON} from 'libs/inputToJSON/inputToJSON';
 import {allFieldsComplete} from 'libs/VerifyCSV/VerifyCSV';
+=======
+import { inputToJSON } from 'libs/inputToJSON/inputToJSON';
+import { addTrackhub } from "store/actions/firebase-actions"
+>>>>>>> 9e4bde7... Restyle homepage.  Redirect to trackhublist on generate.  Add sample
 
 class TrackhubGenerator extends Component {
   constructor(props) {
@@ -48,47 +55,72 @@ class TrackhubGenerator extends Component {
       url: 'https://rmvpv6ey05.execute-api.us-west-2.amazonaws.com/default/create-trackhub-write-s3-bucket/',
       method: "post",
       headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Accept": "application/json",
-          "X-Api-Key": "5OpLIMUC4L9KeE16luwaZ8lAI6TcqUNx4jVfuB8K"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Accept": "application/json",
+        "X-Api-Key": "5OpLIMUC4L9KeE16luwaZ8lAI6TcqUNx4jVfuB8K"
       },
       json: true,
       data: data
     })
-    .then(response => {
-      console.log('TRACKHUB SENT:', response);
-    })
-    .catch(error => {
-      console.error(error)
-    })
+      .then(response => {
+        let trackhubUrl = response.data.hubPath
+        const historyPush = this.props.history.push
+        this.context.store.dispatch(addTrackhub(this.state, trackhubUrl, historyPush))
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
 
   displayCSV = (data) => {
-    this.setState({samples: data})
+    this.setState({ samples: data })
   }
 
+  downloadExample(e, fileName="sample_template.csv", options={}) {
+    e.preventDefault;
+    // don't run on ze server
+    if (typeof window === undefined) { return }
+
+    const { 
+        type = "text/csv"
+    } = options
+
+    const data = ['URL', 'shortLabel', 'longLabel', 'color (rgb)']
+
+    const objectUrl = window.URL.createObjectURL(new Blob([data], { type }))
+
+    const virtualTag = document.createElement("a")
+    virtualTag.href = objectUrl
+    virtualTag.setAttribute("download", fileName);
+    virtualTag.click()
+
+    window.URL.revokeObjectURL(objectUrl);
+}
+
   render() {
-    return(
-      <React.Fragment>
-      <UploadCSV onFileUpload={this.displayCSV} />
-      <br />
-      <form onSubmit={this.handleSubmit} className={classes.form}>
-      <label>
-        <input
-          type="text"
-          name="s3BucketName"
-          placeholder="dm-trackhubs"
-          onChange={this.handleChange} 
-        />
-      </label>
-        <label>
-          Genome assembly (e.g. hg38):
+    return (
+      <div className={classes.homepage}>
+        <p>Upload a CSV file using <a className={classes.pointer} onClick={this.downloadExample}>this template</a> to create a custom trackhub</p>
+        <br />
+        <UploadCSV onFileUpload={this.displayCSV} />
+        <br />
+        <form onSubmit={this.handleSubmit} className={classes.form}>
+          <label>
+            <input
+              type="text"
+              name="s3BucketName"
+              placeholder="dm-trackhubs"
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Genome assembly (e.g. hg38):
           <GenomeRetrieve
-            type="text"
-            name="genome"
-            onChangeGenome={this.handleChange}
-           />
+              type="text"
+              name="genome"
+              onChangeGenome={this.handleChange}
+            />
           </label>
           <br />
           <label>
@@ -97,7 +129,7 @@ class TrackhubGenerator extends Component {
               type="text"
               name="hubName"
               onChange={this.handleChange}
-              />
+            />
           </label>
           <label>
             hub shortLabel:
@@ -105,7 +137,7 @@ class TrackhubGenerator extends Component {
               type="text"
               name="shortLabel"
               onChange={this.handleChange}
-              />
+            />
           </label>
           <label>
             hub longLabel:
@@ -113,7 +145,7 @@ class TrackhubGenerator extends Component {
               type="text"
               name="longLabel"
               onChange={this.handleChange}
-              />
+            />
           </label>
           <label>
             contact email:
@@ -121,21 +153,29 @@ class TrackhubGenerator extends Component {
               type="text"
               name="email"
               onChange={this.handleChange}
-              />
+            />
           </label>
+<<<<<<< HEAD
           <input type="submit" value="Submit" className={classes.button} />
+=======
+
+          <input type="submit" value="Create trackhub" className={classes.button} />
+>>>>>>> 9e4bde7... Restyle homepage.  Redirect to trackhublist on generate.  Add sample
         </form>
-        <RenderCSV csv={this.state.samples}/>
-      </React.Fragment>
+        <RenderCSV csv={this.state.samples} />
+      </div>
     )
   }
 }
 
- 
-// send JSON object to Flask
-// Flask runs Mark's script (create custom trackhub) using all the parser arguments
-// data store returns an object to the user
-// have Flask service check React server for jobs to run. scales better b/c we can only
-// send one react request at a time.
-// need to set up file store for react
-export default TrackhubGenerator;
+const mapStateToProps = function (store) {
+  return {
+    userDetails: store.app.userDetails
+  }
+}
+
+TrackhubGenerator.contextTypes = {
+  store: PropTypes.object
+}
+
+export default connect(mapStateToProps)(TrackhubGenerator)
