@@ -5,6 +5,7 @@ import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
 import RenderCSV from 'presentational/RenderCSV/RenderCSV';
 import {inputToJSON} from 'libs/inputToJSON/inputToJSON';
+import {allFieldsComplete} from 'libs/VerifyCSV/VerifyCSV';
 
 class TrackhubGenerator extends Component {
   constructor(props) {
@@ -34,8 +35,12 @@ class TrackhubGenerator extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let data = inputToJSON(this.state)
-    this.sendTrackhub(data)
+    if (allFieldsComplete(this.state)){
+      let data = inputToJSON(this.state)
+      this.sendTrackhub(data)  
+    } else {
+      return false
+    }
   }
 
   sendTrackhub = (data) => {
@@ -52,7 +57,7 @@ class TrackhubGenerator extends Component {
       data: data
     })
     .then(response => {
-      console.log('response :', response);
+      console.log('TRACKHUB SENT:', response);
     })
     .catch(error => {
       console.error(error)
@@ -118,7 +123,6 @@ class TrackhubGenerator extends Component {
               onChange={this.handleChange}
               />
           </label>
-
           <input type="submit" value="Submit" className={classes.button} />
         </form>
         <RenderCSV csv={this.state.samples}/>

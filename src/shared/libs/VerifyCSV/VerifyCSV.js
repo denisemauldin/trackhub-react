@@ -31,3 +31,22 @@ export const cleanEntry = (data) => {
   });
   return data;
 }
+
+export const allFieldsComplete = (data) => {
+  if (data["samples"] === false) {
+    //TODO: make a modal to replace alert
+    alert("All fields must be complete. A valid CSV must be included.")
+    return false;
+  }
+  if (data["hubName"] === "" ||
+      data["shortLabel"] === "" || 
+      data["longLabel"] === "" || 
+      data["email"] === ""
+    ){
+      //TODO: make a modal 
+      alert("All fields must be complete.")
+      return false
+  } else {
+    return true
+  }
+}
