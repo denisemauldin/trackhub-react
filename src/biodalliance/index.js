@@ -3568,7 +3568,7 @@
                 }
             }
         }
-    
+
         if (this.onFirstRender) {
             Promise.all(this.tiers.map(function (t) {
                 return t.firstRenderPromise;
@@ -3614,7 +3614,19 @@
                                 if (hc.mapping) tdb.mapping = hc.mapping;
                                 if (hc.label) tdb.hub.altLabel = hc.label;
                                 thisB.hubObjects.push(tdb);
-                            }
+
+							    tdb.getTracks(function (tracks, err) {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+
+                                    for (var ti = 0; ti < tracks.length; ++ti) {
+                                        var ds = tracks[ti].toDallianceSource();
+                                        thisB.addTier(ds);
+                                    }
+                                });
+
+					        }
                         }
                     }, hc);
                 })(hc);

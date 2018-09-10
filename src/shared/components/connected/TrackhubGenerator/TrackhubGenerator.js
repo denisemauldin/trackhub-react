@@ -6,13 +6,9 @@ import classes from './TrackhubGenerator.scss'
 import UploadCSV from 'presentational/UploadCSV/UploadCSV';
 import GenomeRetrieve from 'presentational/GenomeRetrieve/GenomeRetrieve';
 import RenderCSV from 'presentational/RenderCSV/RenderCSV';
-<<<<<<< HEAD
-import {inputToJSON} from 'libs/inputToJSON/inputToJSON';
-import {allFieldsComplete} from 'libs/VerifyCSV/VerifyCSV';
-=======
+import { allFieldsComplete } from 'libs/VerifyCSV/VerifyCSV';
 import { inputToJSON } from 'libs/inputToJSON/inputToJSON';
 import { addTrackhub } from "store/actions/firebase-actions"
->>>>>>> 9e4bde7... Restyle homepage.  Redirect to trackhublist on generate.  Add sample
 
 class TrackhubGenerator extends Component {
   constructor(props) {
@@ -155,12 +151,8 @@ class TrackhubGenerator extends Component {
               onChange={this.handleChange}
             />
           </label>
-<<<<<<< HEAD
-          <input type="submit" value="Submit" className={classes.button} />
-=======
 
           <input type="submit" value="Create trackhub" className={classes.button} />
->>>>>>> 9e4bde7... Restyle homepage.  Redirect to trackhublist on generate.  Add sample
         </form>
         <RenderCSV csv={this.state.samples} />
       </div>

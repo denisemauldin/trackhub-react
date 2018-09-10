@@ -7,11 +7,30 @@ import styles from "./trackhublist.scss"
 class TrackhubList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      'selectedTrackhub': null
+    }
+  }
+
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    console.error("Trackhublist", error, info)
   }
 
   componentWillMount() {
     this.context.store.dispatch(fetchTrackhubs())
   }
+
+
+  handleTrackhubListClick = (event) => {
+    const item = event.currentTarget
+    const trackhubIndex = parseInt(item.getAttribute("data-trackhubindex"))
+    const selectedTrackhub = this.props.trackhubs[trackhubIndex]
+    this.setState({'selectedTrackhub': selectedTrackhub })
+    this.props.onTrackhubListClick(selectedTrackhub)
+}
 
   render() {
     if (this.props.loading) {
@@ -25,13 +44,35 @@ class TrackhubList extends Component {
     }
     if (this.props.trackhubs.length === 0) {
       return <div className={styles.homepage}>No trackhubs in list.</div>
-     }
+    }
 
-    return(
+    return (
       <div className={styles.homepage}>
-        { this.props.trackhubs.map((trackhub,i) => {
-        return <div key={i + trackhub.data.hubName}>{trackhub.data.hubName} - {trackhub.data.shortLabel}</div>
-        })}
+        <ul className={styles.list}>
+          {this.props.trackhubs.map((trackhub, i) => {
+            const selectedClass = trackhub === this.state.selectedTrackhub
+              ? styles.isSelected
+              : "";
+
+            return (
+              <li
+                key={i + trackhub.data.hubName}
+                className={`${styles.item} ${selectedClass}`}
+                onClick={this.handleTrackhubListClick}
+                data-trackhubindex={i}
+              >
+                <div className={styles.details}>
+                  <div className={styles.hubName}>
+                    {trackhub.data.hubName}
+                  </div>
+                  <div className={styles.shortLabel}>
+                    {trackhub.data.shortLabel} - {trackhub.data.genome } ({trackhub.data.samples.length})
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     )
   }
@@ -41,7 +82,7 @@ TrackhubList.contextTypes = {
   store: PropTypes.object
 }
 
-const mapStateToProps = function(store) {
+const mapStateToProps = function (store) {
   return {
     errorMsg: store.firebase.trackhubErrorMessage,
     trackhubs: store.firebase.trackhubs,

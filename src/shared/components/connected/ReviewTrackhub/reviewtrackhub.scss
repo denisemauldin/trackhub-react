@@ -1,0 +1,28 @@
+.wrapper {
+  //padding: 100px 20px;
+  //color: #000;
+    // 50px * 2 for the nav and breadcrumb rows
+    // 30px for the space between 
+    $create-height-diff: 30px;
+    margin-top: 30px;
+    padding: 0px 0px;
+    height: calc(100vh - #{$create-height-diff});
+    color: #000;
+    display: flex;
+    margin-left: -25px;  
+}
+
+.leftCol {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 250px;
+  overflow-y: auto;
+  border-right: 5px solid black;
+}
+
+.rightCol {
+    padding: 30px 15px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    flex-grow: 1;
+}

@@ -19,7 +19,7 @@ export function addTrackhub(trackhubData, trackhubUrl, historyPush) {
         trackhubId: userTrackhubsRef.key
       })
       // transition pages
-      historyPush(`/trackhublist`)
+      historyPush(`/`)
 
     })
   }
