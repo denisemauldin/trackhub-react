@@ -12,6 +12,12 @@ src/static/trackhub-demo-master is a download of these example files
 Small hg38 demo file:
 https://raw.githubusercontent.com/daler/trackhub-demo/master/example_hub/myhub.hub.txt
 
+Currently the webpage requires a S3 bucket name that has been configured to allow the lambda function access to deposit the output files.  The S3 bucket dm-trackhubs is provided as a reference that anyone can write to.
+
+An example input file that can be used in the form directly is here: https://raw.githubusercontent.com/denisemauldin/trackhub-react/final/assets/sample_encode_trackhub.csv
+
+If the lambda function returns a 502 error, then it's likely that the CSV file is not entirely filled out or contains invalid values.
+
 
 This is a server-side rendering application that is built with the following stack:
 * webpack
